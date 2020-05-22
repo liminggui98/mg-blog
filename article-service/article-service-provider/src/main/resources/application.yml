@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: article-service-provider
+  profiles:
+    active: prod
+mybatis:
+  type-aliases-package: org.mg.blog.model
+  mapper-locations: classpath:mapper/*Mapper.xml

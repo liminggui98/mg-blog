@@ -1,0 +1,23 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /config-center
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/liminggui98/mg-blog.git
+          search-paths: config-repo/
+  application:
+    name: config-center
+eureka:
+  client:
+    service-url:
+      defaultZone: http://47.96.173.42:8761/eureka,http://47.96.173.42:8762/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ['beans','info','health','env','refresh','mappings']
+

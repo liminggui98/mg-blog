@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mg.blog.website.mapper.ArticleMapper">
+    <resultMap id="articleMap" type="org.mg.blog.model.Article">
+        <result column="id" property="id"></result>
+        <result column="title" property="title"></result>
+        <result column="content" property="content"></result>
+        <result column="description" property="description"></result>
+        <result column="view_count" property="viewCount"></result>
+        <result column="point_count" property="pointCount"></result>
+        <result column="cover_image" property="coverImage"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="update_time" property="updateTime"></result>
+    </resultMap>
+
+    <select id="queryById" resultMap="articleMap" parameterType="java.lang.String">
+        select id,
+               title,
+               content,
+               description,
+               view_count,
+               point_count,
+               cover_image,
+               create_time,
+               update_time
+        from tbl_article
+        where id = ${id}
+    </select>
+
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(*)
+        from tbl_article
+    </select>
+
+    <select id="queryByPage" parameterType="org.mg.blog.model.Page" resultMap="articleMap">
+        select id,
+               title,
+               content,
+               description,
+               view_count,
+               point_count,
+               cover_image,
+               create_time,
+               update_time
+        from tbl_article
+        limit 0,9
+    </select>
+</mapper>

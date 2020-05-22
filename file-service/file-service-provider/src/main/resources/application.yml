@@ -1,0 +1,9 @@
+server:
+  port: 8021
+spring:
+  application:
+    name: file-service-provider
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
