@@ -20,4 +20,3 @@ management:
     web:
       exposure:
         include: ['beans','info','health','env','refresh','mappings']
-
