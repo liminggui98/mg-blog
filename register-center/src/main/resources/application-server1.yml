@@ -1,8 +1,6 @@
 spring:
   application:
     name: register-center-server1
-  profiles:
-    active: dev
 server:
   port: 8761
 eureka:

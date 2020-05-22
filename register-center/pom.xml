@@ -9,7 +9,6 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.mg.blog</groupId>
     <artifactId>register-center</artifactId>
     <packaging>jar</packaging>
     <description>注册中心</description>

@@ -2,17 +2,10 @@ server:
   port: 8080
   servlet:
     context-path: /
-eureka:
-  client:
-    service-url:
-      defaultZone: http://blog.minggui98.vip:8761/eureka,http://blog.minggui98.vip:8762/eureka
 spring:
   application:
     name: gateway
-  security:
-    user:
-      name: minggui98
-      password: 7hV#7612
-zuul:
-  prefix: api
-  routes:
+eureka:
+  client:
+    service-url:
+      defaultZone: http://blog.minggui98.vip:8761/eureka/,http://blog.minggui98.vip:8762/eureka/
