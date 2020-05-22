@@ -11,7 +11,7 @@
 
     <parent>
         <groupId>org.mg.blog</groupId>
-        <artifactId>mg-blog-parent</artifactId>
+        <artifactId>parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
