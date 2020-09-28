@@ -1,9 +1,7 @@
-package org.mg.blog.user.vo.resp;
+package org.mg.blog.resp;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.io.Serializable;
 
 /**
  * 功能描述
@@ -12,7 +10,7 @@ import java.io.Serializable;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class AddUserResp implements Serializable {
+public class UpdateByIdResp {
+    private int count;
     private String desc;
-    private int updateCount;
 }
