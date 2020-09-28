@@ -1,6 +1,6 @@
 spring:
   application:
-    name: register-center-server1
+    name: register-center-server
 server:
   port: 8763
 eureka:
