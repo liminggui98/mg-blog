@@ -2,7 +2,7 @@ spring:
   application:
     name: register-center-server1
 server:
-  port: 8761
+  port: 8763
 eureka:
   instance:
     hostname: localhost
@@ -10,4 +10,4 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:8762/eureka,http://${eureka.instance.hostname}:8763/eureka
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka,http://${eureka.instance.hostname}:8762/eureka
