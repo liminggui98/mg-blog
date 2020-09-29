@@ -38,7 +38,7 @@
                                     <i class="layui-icon layui-icon-delete"></i>
                                 </div>
                                 <div class="layui-inline">
-                                    <input class="layui-input" placeholder="搜索" style="height: 26px;font-size: 20px;"
+                                    <input class="layui-input" placeholder="搜索" style="height: 26px;font-size: 10px;"
                                            name="id" id="demoReload" autocomplete="off">
                                 </div>
                             </div>

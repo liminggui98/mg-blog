@@ -32,6 +32,5 @@ public class FreemarkerConfig {
     @PostConstruct
     public void init() throws TemplateModelException {
         configuration.setSharedVariable("config", configApi.queryConfigs().getResult());
-        configuration.setSharedVariable("menus", resourcesApi.queryUserResource("1").getResult());
     }
 }

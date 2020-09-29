@@ -10,10 +10,8 @@ function initTable(option) {
         let table = layui.table;
 
         table.render({
-            title: '列表',
-            text: '无数据',
             elem: '#table',
-            url: dataOption.url,
+            url: window.location.href,
             method: 'post',
             data: [],
             toolbar: '#toolbar',
@@ -73,7 +71,10 @@ function initTable(option) {
         });
 
         function show(obj) {
-            layer.msg('ID：' + obj.data.id + ' 的查看操作');
+            layer.open({
+                type: 2,
+                content: ['http://sentsin.com', 'no']
+            });
         }
 
         function search() {
