@@ -12,6 +12,8 @@ import org.mg.blog.resp.DeleteByIdResp;
 import org.mg.blog.resp.UpdateByIdResp;
 import org.mg.blog.service.BaseService;
 
+import java.util.List;
+
 /**
  * 用于返回 BaseApi 断路信息
  *
@@ -28,6 +30,11 @@ public class BaseApiFallBack<E extends BaseService<T>, T extends DataBaseModel> 
 
     @Override
     public Result<DeleteByIdResp> delete(String id) {
+        return errorResult();
+    }
+
+    @Override
+    public Result<DeleteByIdResp> batchDel(List<String> ids) {
         return errorResult();
     }
 

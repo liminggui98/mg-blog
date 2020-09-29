@@ -1,10 +1,9 @@
-package org.mg.blog.common.dto;
+package org.mg.blog.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 基本响应信息
@@ -14,7 +13,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class Result<T> implements Serializable {
-    private Date respDateTime;
-    private Status status;
+    private String respDateTime = System.currentTimeMillis() + "";
+    private Status status = Status.SUCCESS;
     private T result;
 }

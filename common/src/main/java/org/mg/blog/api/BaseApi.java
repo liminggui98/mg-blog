@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 /**
  * 基本 api
  *
@@ -39,6 +41,14 @@ public interface BaseApi<T extends DataBaseModel> {
      */
     @DeleteMapping(value = "/{id}")
     Result<DeleteByIdResp> delete(@PathVariable(value = "id") String id);
+
+    /**
+     * 批量删除
+     *
+     * @param ids id 集
+     * @return 删除结果
+     */
+    Result<DeleteByIdResp> batchDel(@RequestBody List<String> ids);
 
     /**
      * 更新数据

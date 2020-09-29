@@ -12,6 +12,8 @@ import org.mg.blog.resp.UpdateByIdResp;
 import org.mg.blog.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * 基本端点
  *
@@ -40,6 +42,18 @@ public abstract class BaseEndpoint<E extends BaseService<T>, T extends DataBaseM
     @Override
     public Result<DeleteByIdResp> delete(String id) {
         int count = service.delete(id);
+
+        DeleteByIdResp deleteByIdResp = new DeleteByIdResp();
+        deleteByIdResp.setCount(count);
+
+        Result<DeleteByIdResp> result = new Result<>();
+        result.setResult(deleteByIdResp);
+        return result;
+    }
+
+    @Override
+    public Result<DeleteByIdResp> batchDel(List<String> ids) {
+        int count = service.batchDel(ids);
 
         DeleteByIdResp deleteByIdResp = new DeleteByIdResp();
         deleteByIdResp.setCount(count);
