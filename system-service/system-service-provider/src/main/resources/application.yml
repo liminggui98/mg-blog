@@ -1,0 +1,14 @@
+server:
+  port: 8020
+spring:
+  application:
+    name: system-service
+  profiles:
+    active: dev
+management:
+  endpoint:
+    mappings:
+      enabled: true
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
