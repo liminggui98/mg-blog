@@ -1,17 +1,17 @@
-function initTable(option) {
+function initTable() {
     let cols = [{type: 'checkbox'}];
     cols.push.apply(cols, dataOption.cols);
     cols.push({
         'title': '操作',
-        'toolbar': '#bar'
+        'toolbar': '#bar',
     });
 
     layui.use(['table'], function () {
         let table = layui.table;
-
-        table.render({
+        let option = {
+            id: '#table',
             elem: '#table',
-            url: window.location.href,
+            url: window.location.href + "/list",
             method: 'post',
             data: [],
             toolbar: '#toolbar',
@@ -21,6 +21,7 @@ function initTable(option) {
                 pageName: 'current', //页码的参数名称，默认：page
                 limitName: 'size' //每页数据量的参数名，默认：limit
             },
+            loading: true,
             limits: [10, 20, 30, 40, 50, 60, 70, 80, 90],
             cols: [cols],
             parseData: function (res) {
@@ -31,7 +32,9 @@ function initTable(option) {
                     "data": res.records //解析数据列表
                 }
             }
-        });
+        }
+
+        let tableIns = table.render(option);
 
         table.exportFile = function (e, t, i) {
 
@@ -73,7 +76,10 @@ function initTable(option) {
         function show(obj) {
             layer.open({
                 type: 2,
-                content: ['http://sentsin.com', 'no']
+                title: '查看详情',
+                area: ['1000px', '80%'],
+                btn: ['确认', '取消'],
+                content: [window.location.href + '/' + obj.data.id, 'no']
             });
         }
 
@@ -82,15 +88,56 @@ function initTable(option) {
         }
 
         function add() {
-            layer.msg('添加');
+            layer.open({
+                type: 2,
+                title: '添加',
+                area: ['1000px', '80%'],
+                btn: ['确认', '取消'],
+                content: [window.location.href + '/add'],
+                success: function (layerNo, index) {
+                    console.log(layerNo, index);
+                },
+                yes: function (index, layerNo) {
+                    console.log(layerNo, index);
+                },
+                no: function (index, layerNo) {
+                    console.log(layerNo, index);
+                },
+                cancel: function (index, layerNo) {
+                    console.log(layerNo, index);
+                }
+            });
         }
 
         function edit(obj) {
-            layer.alert('编辑行：<br>' + JSON.stringify(obj.data))
+            layer.open({
+                type: 2,
+                title: '编辑',
+                area: ['1000px', '80%'],
+                btn: ['确认', '取消'],
+                content: [window.location.href + '/' + obj.data.id]
+            });
         }
 
         function del(obj) {
-            layer.alert('删除行：<br>' + JSON.stringify(obj.data))
+            $.ajax({
+                url: window.location.href + "/" + obj.data.id,
+                method: 'delete',
+                success: function (res) {
+                    layer.msg('删除成功', {
+                        icon: 1,
+                    }, function () {
+                        tableIns.reload(option);
+                    });
+                },
+                error: function (res) {
+                    layer.msg('删除失败', {
+                        icon: 2,
+                    }, function () {
+                        tableIns.reload(option);
+                    });
+                }
+            });
         }
 
         function batchEdit(data) {
@@ -99,7 +146,10 @@ function initTable(option) {
             } else if (data.length > 1) {
                 layer.msg('只能同时编辑一个');
             } else {
-                layer.alert('编辑 [id]：' + data[0].id);
+                layer.open({
+                    type: 2,
+                    content: [window.location.href + '/' + obj.data.id, 'no']
+                });
             }
         }
 
@@ -107,9 +157,31 @@ function initTable(option) {
             if (dataArray.length === 0) {
                 layer.msg('请选择一行');
             } else {
+                let ids = [];
                 for (let i in dataArray) {
-                    layer.alert('删除 [id]：' + dataArray[i].id);
+                    ids.push(dataArray[i].id)
                 }
+                $.ajax({
+                    url: window.location.href + "/batchDel",
+                    data: {
+                        'ids': $.makeArray(ids)
+                    },
+                    method: 'delete',
+                    success: function (res) {
+                        layer.msg('删除成功', {
+                            icon: 1,
+                        }, function () {
+                            tableIns.reload(option);
+                        });
+                    },
+                    error: function (res) {
+                        layer.msg('删除失败', {
+                            icon: 2,
+                        }, function () {
+                            tableIns.reload(option);
+                        });
+                    }
+                })
             }
         }
     });

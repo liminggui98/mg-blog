@@ -13,8 +13,9 @@
     <properties>
         <java.version>1.8</java.version>
         <druid.version>1.1.9</druid.version>
-        <mybatis.version>2.1.2</mybatis.version>
         <lombok.version>1.18.8</lombok.version>
+        <hutool.version>4.1.21</hutool.version>
+        <mybatis.version>2.1.2</mybatis.version>
         <maven.compile.source>1.8</maven.compile.source>
         <maven.compile.target>1.8</maven.compile.target>
         <mybatis.plus.version>3.3.1</mybatis.plus.version>
@@ -24,29 +25,6 @@
     </properties>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -57,7 +35,6 @@
                         <target>${java.version}</target>
                     </configuration>
                 </plugin>
-
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
@@ -113,6 +90,12 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

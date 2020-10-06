@@ -42,4 +42,20 @@ public class FieldUtils {
         }
         return fieldMaps;
     }
+
+    public static List<Map<String, Object>> getFields(String className) throws ClassNotFoundException {
+        Class dataBaseModel = Class.forName(className);
+        return getFields(dataBaseModel);
+    }
+
+    public static List<Map<String, Object>> getFields(List<org.mg.blog.system.dto.Field> fields) {
+        List<Map<String, Object>> fieldMaps = new ArrayList<>();
+        fields.stream().forEach(f -> {
+            Map<String, Object> fieldMap = new HashMap<>();
+            fieldMap.put("field", f.getName());
+            fieldMap.put("title", f.getName());
+            fieldMaps.add(fieldMap);
+        });
+        return fieldMaps;
+    }
 }

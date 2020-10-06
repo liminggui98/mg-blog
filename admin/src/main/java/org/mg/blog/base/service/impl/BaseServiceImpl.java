@@ -12,6 +12,7 @@ import org.mg.blog.resp.DeleteByIdResp;
 import org.mg.blog.resp.UpdateByIdResp;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -30,14 +31,18 @@ public abstract class BaseServiceImpl<T extends BaseApi<E>, E extends DataBaseMo
     }
 
     @Override
-    public String add(E e) {
-        Result<AddResp> result = api.add(e);
-        return Optional.of(result.getResult().getCount() + "").orElse("");
+    public Result<AddResp> add(E e) {
+        return api.add(e);
     }
 
     @Override
     public Result<DeleteByIdResp> delete(String id) {
         return api.delete(id);
+    }
+
+    @Override
+    public Result<DeleteByIdResp> batchDel(List<String> ids) {
+        return api.batchDel(ids);
     }
 
     @Override

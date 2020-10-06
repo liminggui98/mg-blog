@@ -11,7 +11,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients(basePackages = {"org.mg.blog.user.api"})
 public class ArticleServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(ArticleServiceApplication.class);

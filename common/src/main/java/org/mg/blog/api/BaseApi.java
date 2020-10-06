@@ -48,6 +48,7 @@ public interface BaseApi<T extends DataBaseModel> {
      * @param ids id 集
      * @return 删除结果
      */
+    @DeleteMapping(value = "batchDel")
     Result<DeleteByIdResp> batchDel(@RequestBody List<String> ids);
 
     /**

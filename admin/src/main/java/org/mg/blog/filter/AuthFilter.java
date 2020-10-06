@@ -4,9 +4,13 @@ package org.mg.blog.filter;
 import org.apache.commons.lang.StringUtils;
 import org.mg.blog.utils.CookieUtils;
 import org.mg.blog.utils.SessionUtils;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
@@ -18,7 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @since 2020-06-16
  */
-@WebFilter(urlPatterns = "/")
+@Component
+@WebFilter(urlPatterns = "*")
 public class AuthFilter implements Filter {
 
     /**
@@ -27,7 +32,8 @@ public class AuthFilter implements Filter {
     public static final String SESSION_ID_FIELD = "JSESSIONID";
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+        throws IOException, ServletException {
         HttpServletRequest request = null;
         HttpServletResponse response = null;
 
@@ -41,5 +47,6 @@ public class AuthFilter implements Filter {
         if (StringUtils.isEmpty(sessionId)) {
             CookieUtils.set(response, SESSION_ID_FIELD, SessionUtils.getSessionId());
         }
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 }

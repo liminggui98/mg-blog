@@ -26,8 +26,6 @@ public class ArticleEndpointTest extends BaseTest {
         Article article = new Article();
         article.setTitle("标题");
         article.setContent("内容");
-        article.setDescription("描述");
-        article.setCoverImage("");
 
         RequestBuilder req = MockMvcRequestBuilders.post("/article").
                 content(JSONUtils.toJSONString(article)).

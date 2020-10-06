@@ -1,33 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <title>添加角色</title>
+    <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expires" content="0">
-
-    <title>${config.siteName}</title>
-    <link href="/assets/images/favicon.ico" rel="icon">
-    <link href="/assets/css/common/common.css" rel="stylesheet" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="/assets/plugins/layui/css/layui.css" rel="stylesheet" type="text/css">
 </head>
-<body class="layui-layout-body">
-<div class="layui-layout layui-layout-admin">
-    <#include "/common/header.ftl"/>
-
-    <#include "/common/left-menu.ftl"/>
-
-    <div class="layui-body" style="padding: 20px; background-color: #F2F2F2;">
+<body>
+<form class="layui-form" method="post" style="margin-top: 20px;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色名称 *</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入角色名称"
+                   class="layui-input" style="width: 95%;" value="${data.name}" disabled>
+        </div>
     </div>
-
-    <#include "/common/footer.ftl"/>
-</div>
-<script src="/assets/js/common/table.js"></script>
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色描述 *</label>
+        <div class="layui-input-block">
+            <input type="text" name="description" lay-verify="title" autocomplete="off" placeholder="请输入角色描述"
+                   class="layui-input" style="width: 95%;" value="${data.description}" disabled>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否可用 *</label>
+        <div class="layui-input-block">
+            <select name="available" lay-verify="required" style="width: 95%;" disabled>
+                <option value="">请选择</option>
+                <#if data.available>
+                    <option value="0" selected>不可用</option>
+                    <option value="1">可用</option>
+                <#else>
+                    <option value="0">不可用</option>
+                    <option value="1" selected>可用</option>
+                </#if>
+            </select>
+        </div>
+    </div>
+</form>
+<script src="/assets/plugins/layui/layui.js"></script>
 <script>
-    let dataOption = ${tableOption};
-    blogTable.init(dataOption);
+    layui.use(['form'], function () {
+        let form = layui.form
+        let layer = layui.layer
+        form.verify({
+            title: function (value) {
+                if (value.length < 5) {
+                    return '至少得5个字符啊';
+                }
+            },
+            pass: [
+                /^[\S]{6,12}$/,
+                '密码必须6到12位，且不能出现空格'
+            ],
+            content: function (value) {
+            }
+        });
+        form.on('submit(from)', function (data) {
+            layer.closeAll();
+        });
+    });
 </script>
 </body>
 </html>

@@ -1,8 +1,0 @@
-spring:
-  application:
-    name: user-service-provider
-  profiles:
-    active: prod
-mybatis-plus:
-  type-aliases-package: org.mg.blog.model,org.mg.blog.user.dto
-  mapper-locations: classpath:mapper/*Mapper.xml

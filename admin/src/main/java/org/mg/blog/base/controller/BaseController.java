@@ -13,21 +13,26 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.mg.blog.base.service.BaseService;
 import org.mg.blog.dto.DataBaseModel;
 import org.mg.blog.dto.Result;
+import org.mg.blog.field.service.FieldService;
+import org.mg.blog.resp.AddResp;
 import org.mg.blog.resp.DeleteByIdResp;
 import org.mg.blog.resp.UpdateByIdResp;
-import org.mg.blog.system.dto.Role;
+import org.mg.blog.system.dto.Field;
 import org.mg.blog.utils.FieldUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Resource;
 
 /**
  * 基础转发器
@@ -36,9 +41,12 @@ import java.util.Map;
  * @param <T> 数据实体类
  * @since 2020-09-26
  */
-public class BaseController<T extends BaseService<E>, E extends DataBaseModel> {
-    @Autowired
+public abstract class BaseController<T extends BaseService<E>, E extends DataBaseModel> {
+    @Resource
     protected T service;
+
+    @Resource
+    protected FieldService fieldService;
 
     /**
      * to 增加视图数据页
@@ -51,14 +59,38 @@ public class BaseController<T extends BaseService<E>, E extends DataBaseModel> {
     }
 
     /**
+     * 添加对象
+     *
+     * @param obj 对象
+     * @return 添加结果
+     */
+    @ResponseBody
+    @PostMapping("/add")
+    public Result<AddResp> add(E obj) {
+        return service.add(obj);
+    }
+
+    /**
      * 删除数据实体
      *
      * @param id 数据实体 id
      * @return 删除结果
      */
+    @ResponseBody
     @DeleteMapping("/{id}")
     public Result<DeleteByIdResp> delete(@PathVariable("id") String id) {
         return service.delete(id);
+    }
+
+    /**
+     * 批量删除
+     *
+     * @param ids id 集
+     * @return 删除结果
+     */
+    @DeleteMapping("/batchDel")
+    public Result<DeleteByIdResp> batchDel(@RequestBody List<String> ids) {
+        return service.batchDel(ids);
     }
 
     /**
@@ -68,6 +100,7 @@ public class BaseController<T extends BaseService<E>, E extends DataBaseModel> {
      * @param obj 数据实体
      * @return 修改结果
      */
+    @ResponseBody
     @PutMapping("/{id}")
     public Result<UpdateByIdResp> update(@PathVariable("id") String id, E obj) {
         return service.update(obj);
@@ -90,10 +123,12 @@ public class BaseController<T extends BaseService<E>, E extends DataBaseModel> {
      *
      * @return 列表页视图
      */
-    @GetMapping("/list")
+    @GetMapping
     public ModelAndView toList() {
         Map<String, Object> tableMap = new HashMap<>(1);
-        tableMap.put(COLS_FIELD, FieldUtils.getFields(Role.class));
+
+        List<Field> fields = fieldService.queryByResourceId(null);
+        tableMap.put(COLS_FIELD, FieldUtils.getFields(fields));
 
         ModelAndView view = createView(DATA_TABLE_VIEW);
         view.addObject(TABLE_OPTION_FIELD, JSON.toJSONString(tableMap));
@@ -122,5 +157,19 @@ public class BaseController<T extends BaseService<E>, E extends DataBaseModel> {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(viewName);
         return modelAndView;
+    }
+
+    /**
+     * 获取数据实体类名
+     *
+     * @return 数据实体类名
+     */
+    private String getDataClassName() {
+        String signature = this.getClass().getGenericSuperclass().getTypeName();
+
+        String temp = signature.substring(signature.indexOf("<") + 1);
+        temp = temp.substring(0, temp.length() - 1);
+        String[] classNames = temp.split(",");
+        return classNames[1].trim();
     }
 }

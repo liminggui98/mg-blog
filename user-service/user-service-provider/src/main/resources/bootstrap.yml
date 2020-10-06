@@ -1,6 +1,0 @@
-spring:
-  profiles:
-    active: prod
-  cloud:
-    config:
-      uri: http://47.96.173.42:8888/config-center

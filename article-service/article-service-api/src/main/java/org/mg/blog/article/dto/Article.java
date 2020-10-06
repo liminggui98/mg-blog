@@ -3,7 +3,7 @@ package org.mg.blog.article.dto;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.mg.blog.common.dto.DataBaseModel;
+import org.mg.blog.dto.DataBaseModel;
 
 import java.util.List;
 
@@ -14,11 +14,34 @@ import java.util.List;
 @TableName("tbl_article")
 @EqualsAndHashCode(callSuper = false)
 public class Article extends DataBaseModel {
+    /**
+     * 文章标题
+     */
     private String title;
-    private String content; // 文章内容
-    private String description; // 简介
-    private int viewCount;// 查看次数
-    private int pointCount;// 点赞次数
-    private String coverImage; // 封面图片
-    private String userId; // 用户id
+
+    /**
+     * 用户id
+     */
+    private String userId;
+
+    /**
+     * 文章内容
+     */
+    private String content;
+
+    /**
+     * 状态 0：有效
+     */
+    private Boolean status;
+
+    /**
+     * 文章类型数据
+     */
+
+    private transient List<Type> types;
+
+    /**
+     * 文章关键词集
+     */
+    private transient List<String> keywords;
 }

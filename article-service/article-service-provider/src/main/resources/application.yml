@@ -1,8 +1,10 @@
+server:
+  port: 8010
 spring:
   application:
-    name: article-service-provider
+    name: article-service
   profiles:
-    active: prod
-mybatis:
-  type-aliases-package: org.mg.blog.model
-  mapper-locations: classpath:mapper/*Mapper.xml
+    active: dev
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true

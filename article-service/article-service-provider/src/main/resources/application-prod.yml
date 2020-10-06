@@ -1,3 +1,15 @@
-mybatis:
-  type-aliases-package: org.mg.blog.model
-  mapper-locations: classpath:mapper/*Mapper.xml
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://rm-bp10c9m597111126xeo.mysql.rds.aliyuncs.com:3306/article?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+      username: minggui98
+      password: 7hV#7612
+      max-active: 5
+      max-wait: 10000
+  redis:
+    host: blog.minggui98.vip
+    password: 7hV#7612
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka,http://127.0.0.1:8762/eureka
