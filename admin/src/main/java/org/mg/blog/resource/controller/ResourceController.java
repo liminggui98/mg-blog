@@ -8,6 +8,7 @@ import org.mg.blog.resource.service.ResourceService;
 import org.mg.blog.system.dto.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 功能描述
@@ -17,4 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = RESOURCE_URL)
 public class ResourceController extends BaseController<ResourceService, Resource> {
+    @Override
+    public ModelAndView toList() {
+        return createView("resource/list");
+    }
 }

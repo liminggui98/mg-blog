@@ -1,4 +1,4 @@
-function initTable() {
+function initTable(dataOption) {
     let cols = [{type: 'checkbox'}];
     cols.push.apply(cols, dataOption.cols);
     cols.push({
@@ -94,17 +94,13 @@ function initTable() {
                 area: ['1000px', '80%'],
                 btn: ['确认', '取消'],
                 content: [window.location.href + '/add'],
-                success: function (layerNo, index) {
-                    console.log(layerNo, index);
-                },
                 yes: function (index, layerNo) {
-                    console.log(layerNo, index);
-                },
-                no: function (index, layerNo) {
-                    console.log(layerNo, index);
+                    $("#data").submit();
+                    layer.close(index);
                 },
                 cancel: function (index, layerNo) {
-                    console.log(layerNo, index);
+                    layer.close(index);
+                    console.log('cancel')
                 }
             });
         }

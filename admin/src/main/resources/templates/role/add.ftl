@@ -9,7 +9,7 @@
     <link href="/assets/plugins/layui/css/layui.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form class="layui-form" method="post" style="margin-top: 20px;">
+<form class="layui-form" method="post" action="/roles/add" style="margin-top: 20px;" id="data">
     <div class="layui-form-item" style="width: 95%;">
         <label class="layui-form-label">角色名称 *</label>
         <div class="layui-input-block">
@@ -40,8 +40,6 @@
     layui.use(['form'], function () {
         let form = layui.form
         let layer = layui.layer
-
-
         form.verify({
             title: function (value) {
                 if (value.length < 5) {
@@ -54,9 +52,6 @@
             ],
             content: function (value) {
             }
-        });
-        form.on('submit(from)', function (data) {
-            layer.closeAll();
         });
     });
 </script>

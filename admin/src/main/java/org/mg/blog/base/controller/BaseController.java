@@ -19,6 +19,7 @@ import org.mg.blog.resp.DeleteByIdResp;
 import org.mg.blog.resp.UpdateByIdResp;
 import org.mg.blog.system.dto.Field;
 import org.mg.blog.utils.FieldUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,10 +43,10 @@ import javax.annotation.Resource;
  * @since 2020-09-26
  */
 public abstract class BaseController<T extends BaseService<E>, E extends DataBaseModel> {
-    @Resource
+    @Autowired
     protected T service;
 
-    @Resource
+    @Autowired
     protected FieldService fieldService;
 
     /**

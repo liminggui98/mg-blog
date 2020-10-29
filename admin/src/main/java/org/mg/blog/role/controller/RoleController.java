@@ -21,6 +21,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = ROLE_URL)
 public class RoleController extends BaseController<RoleService, Role> {
     @Override
+    @GetMapping
+    public ModelAndView toList() {
+        return createView("role/list");
+    }
+
+    @Override
     @GetMapping("/add")
     public ModelAndView toAdd() {
         return createView("role/add");
