@@ -29,8 +29,8 @@ public class ConfigServiceImpl extends BaseServiceImpl<Config> implements Config
     @Resource
     private ConfigMapper configMapper;
 
-    @Cacheable(cacheNames = "configAll")
     @Override
+    @Cacheable(cacheNames = "configAll")
     public Map<String, Object> queryConfigs() {
         List<Config> configList = configMapper.selectAll();
         if (CollectionUtils.isEmpty(configList)) {

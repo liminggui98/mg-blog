@@ -26,8 +26,8 @@
         res.icon
     </sql>
 
-    <!-- query top resources by userId -->
-    <select id="queryTopResourcesByUserId" resultType="org.mg.blog.system.dto.Resource">
+    <!-- query top resources by roleId -->
+    <select id="queryTopResourcesByRoleId" resultType="org.mg.blog.system.dto.Resource">
         select
         <include refid="tableField"/>
         from
@@ -35,7 +35,10 @@
         left join
         <include refid="resourceTableName"/>
         on role_res.resources_id = res.id
-        where role_res.role_id = #{roleId}
+        where 1=1
+        <if test="roleId != null and roleId != ''">
+            and role_res.role_id = #{roleId}
+        </if>
         and res.type = 'menu'
         and res.parent_id = 0
         order by res.sort
@@ -50,7 +53,10 @@
         left join
         <include refid="resourceTableName"/>
         on role_res.resources_id = res.id
-        where role_res.role_id = #{roleId}
+        where 1 = 1
+        <if test="roleId != null and roleId != ''">
+            and role_res.role_id = #{roleId}
+        </if>
         and res.type = 'menu'
         and res.parent_id = #{parentId}
         order by res.sort

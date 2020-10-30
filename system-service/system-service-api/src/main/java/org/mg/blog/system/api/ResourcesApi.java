@@ -23,5 +23,13 @@ public interface ResourcesApi extends BaseApi<Resource> {
      * @return 资源
      */
     @GetMapping("/role/{roleId}")
-    Result<List<Resource>> queryUserResource(@PathVariable(value = "roleId") String roleId);
+    Result<List<Resource>> queryRoleResource(@PathVariable(value = "roleId") String roleId);
+
+    /**
+     * 查询列表
+     *
+     * @return
+     */
+    @GetMapping("/list")
+    Result<List<Resource>> queryResource();
 }

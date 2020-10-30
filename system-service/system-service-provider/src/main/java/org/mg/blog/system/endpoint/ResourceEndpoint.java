@@ -20,11 +20,16 @@ import java.util.List;
 @RequestMapping(value = "/resource")
 public class ResourceEndpoint extends BaseEndpoint<ResourceService, Resource> implements ResourcesApi {
     @Override
-    public Result<List<Resource>> queryUserResource(String roleId) {
-        List<Resource> resources = service.queryUserResource(roleId);
+    public Result<List<Resource>> queryRoleResource(String roleId) {
+        List<Resource> resources = service.queryRoleResource(roleId);
 
         Result<List<Resource>> result = new Result<>();
         result.setResult(resources);
         return result;
+    }
+
+    @Override
+    public Result<List<Resource>> queryResource() {
+        return queryRoleResource("");
     }
 }

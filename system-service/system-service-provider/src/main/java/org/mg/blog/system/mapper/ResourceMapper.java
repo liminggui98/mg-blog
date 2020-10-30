@@ -21,7 +21,7 @@ public interface ResourceMapper extends BaseMapper<Resource> {
      * @param roleId 角色 id
      * @return 用户资源集
      */
-    List<Resource> queryTopResourcesByUserId(@Param("roleId") String roleId);
+    List<Resource> queryTopResourcesByRoleId(@Param("roleId") String roleId);
 
     /**
      * 通过角色 id 及父级角色 id 查询资源

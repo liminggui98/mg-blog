@@ -1,8 +1,6 @@
 
 package org.mg.blog.system.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-
 import org.mg.blog.service.BaseService;
 import org.mg.blog.system.dto.Resource;
 
@@ -18,7 +16,14 @@ public interface ResourceService extends BaseService<Resource> {
      * 通过用户 id 查询用户资源
      *
      * @param roleId 角色 Id
-     * @return 资源
+     * @return 资源集
      */
-    List<Resource> queryUserResource(String roleId);
+    List<Resource> queryRoleResource(String roleId);
+
+    /**
+     * 查询所有资源
+     *
+     * @return 资源集
+     */
+    List<Resource> queryList();
 }

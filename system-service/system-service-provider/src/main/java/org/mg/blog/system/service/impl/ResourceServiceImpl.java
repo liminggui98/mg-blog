@@ -21,14 +21,26 @@ public class ResourceServiceImpl extends BaseServiceImpl<Resource> implements Re
     private ResourceMapper resourceMapper;
 
     @Override
-    public List<Resource> queryUserResource(String roleId) {
-        List<Resource> resources = resourceMapper.queryTopResourcesByUserId(roleId);
+    public List<Resource> queryRoleResource(String roleId) {
+        List<Resource> resources = resourceMapper.queryTopResourcesByRoleId(roleId);
         resources.stream().forEach(res -> {
             querySubNode(roleId, res);
         });
         return resources;
     }
 
+    @Override
+    public List<Resource> queryList() {
+        return queryRoleResource("");
+    }
+
+    /**
+     * 查询子集资源
+     *
+     * @param roleId 角色id
+     * @param resource 父级资源
+     * @return 子集资源
+     */
     private List<Resource> querySubNode(String roleId, Resource resource) {
         String resourceId = resource.getId();
 
