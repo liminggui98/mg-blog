@@ -7,6 +7,11 @@ spring:
     suffix: .ftl
   main:
     allow-bean-definition-overriding: true
+  session:
+    store-type: redis
+  redis:
+    host: localhost
+    password: 7hV#7612
 eureka:
   client:
     service-url:

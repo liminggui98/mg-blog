@@ -6,8 +6,14 @@ function initTable(dataOption) {
         'toolbar': '#bar',
     });
 
-    layui.use(['table'], function () {
+    if (!dataOption.parseData) {
+        dataOption.parseData = parseData;
+    }
+
+    layui.use(['table', 'form'], function () {
         let table = layui.table;
+        let form = layui.form;
+
         let option = {
             id: '#table',
             elem: '#table',
@@ -24,14 +30,7 @@ function initTable(dataOption) {
             loading: true,
             limits: [10, 20, 30, 40, 50, 60, 70, 80, 90],
             cols: [cols],
-            parseData: function (res) {
-                return {
-                    "code": 0, //解析接口状态
-                    "msg": '', //解析提示文本
-                    "count": res.total, //解析数据长度
-                    "data": res.records //解析数据列表
-                }
-            }
+            parseData: dataOption.parseData,
         }
 
         let tableIns = table.render(option);
@@ -95,8 +94,10 @@ function initTable(dataOption) {
                 btn: ['确认', '取消'],
                 content: [window.location.href + '/add'],
                 yes: function (index, layerNo) {
-                    $("#data").submit();
+                    let submitId = 'LAY-add-submit';
+                    let submit = layerNo.find('iframe').contents().find('#' + submitId);
                     layer.close(index);
+                    submit.trigger('click');
                 },
                 cancel: function (index, layerNo) {
                     layer.close(index);
@@ -181,6 +182,15 @@ function initTable(dataOption) {
             }
         }
     });
+
+    function parseData(res) {
+        return {
+            "code": 0, //解析接口状态
+            "msg": '', //解析提示文本
+            "count": res.total, //解析数据长度
+            "data": res.records //解析数据列表
+        }
+    }
 }
 
 let blogTable = {};

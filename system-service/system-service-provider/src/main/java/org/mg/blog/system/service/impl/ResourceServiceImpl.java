@@ -23,7 +23,7 @@ public class ResourceServiceImpl extends BaseServiceImpl<Resource> implements Re
     @Override
     public List<Resource> queryRoleResource(String roleId) {
         List<Resource> resources = resourceMapper.queryTopResourcesByRoleId(roleId);
-        resources.stream().forEach(res -> {
+        resources.forEach(res -> {
             querySubNode(roleId, res);
         });
         return resources;
@@ -45,7 +45,7 @@ public class ResourceServiceImpl extends BaseServiceImpl<Resource> implements Re
         String resourceId = resource.getId();
 
         List<Resource> resources = resourceMapper.queryResourcesByParentIdAndRoleId(roleId, resourceId);
-        resources.stream().forEach(res -> querySubNode(roleId, res));
+        resources.forEach(res -> querySubNode(roleId, res));
         resource.setNodes(resources);
         return resources;
     }

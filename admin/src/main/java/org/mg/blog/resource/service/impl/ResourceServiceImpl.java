@@ -7,6 +7,8 @@ import org.mg.blog.system.api.ResourcesApi;
 import org.mg.blog.system.dto.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 资源服务
  *
@@ -14,4 +16,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ResourceServiceImpl extends BaseServiceImpl<ResourcesApi, Resource> implements ResourceService {
+    @Override
+    public List<Resource> queryRoleResource(String roleId) {
+        return api.queryRoleResource(roleId).getResult();
+    }
+
+    @Override
+    public List<Resource> queryResource() {
+        return api.queryResource().getResult();
+    }
 }

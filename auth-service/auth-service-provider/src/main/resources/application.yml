@@ -1,0 +1,10 @@
+server:
+  port: 8030
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/auth?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+      username: root
+      password: 7hV#7612
+      max-active: 5
+      max-wait: 10000

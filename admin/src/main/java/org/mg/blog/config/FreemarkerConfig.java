@@ -5,6 +5,7 @@ import freemarker.template.TemplateModelException;
 
 import org.mg.blog.system.api.ConfigApi;
 import org.mg.blog.system.api.ResourcesApi;
+import org.mg.blog.system.api.RoleApi;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -15,11 +16,12 @@ import javax.annotation.Resource;
  */
 @Configuration
 public class FreemarkerConfig {
-    @Resource
-    private ConfigApi configApi;
 
     @Resource
     private ResourcesApi resourcesApi;
+
+    @Resource
+    private ConfigApi configApi;
 
     @Resource
     private freemarker.template.Configuration configuration;
@@ -32,5 +34,6 @@ public class FreemarkerConfig {
     @PostConstruct
     public void init() throws TemplateModelException {
         configuration.setSharedVariable("config", configApi.queryConfigs().getResult());
+        configuration.setSharedVariable("menus", resourcesApi.queryRoleResource("1").getResult());
     }
 }

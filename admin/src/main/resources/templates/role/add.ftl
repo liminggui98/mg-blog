@@ -9,7 +9,7 @@
     <link href="/assets/plugins/layui/css/layui.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form class="layui-form" method="post" action="/roles/add" style="margin-top: 20px;" id="data">
+<form class="layui-form" action="" method="post">
     <div class="layui-form-item" style="width: 95%;">
         <label class="layui-form-label">角色名称 *</label>
         <div class="layui-input-block">
@@ -34,12 +34,16 @@
             </select>
         </div>
     </div>
+    <div class="layui-form-item" style="width: 95%;display: none">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="add" id="LAY-add-submit">立即提交</button>
+        </div>
+    </div>
 </form>
 <script src="/assets/plugins/layui/layui.js"></script>
 <script>
     layui.use(['form'], function () {
         let form = layui.form
-        let layer = layui.layer
         form.verify({
             title: function (value) {
                 if (value.length < 5) {
@@ -52,6 +56,11 @@
             ],
             content: function (value) {
             }
+        });
+
+        //监听提交
+        form.on('submit(add)', function(data){
+            tableIns.reload(option);
         });
     });
 </script>

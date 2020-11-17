@@ -26,6 +26,10 @@
                     <div class="layui-card-body">
                         <table class="layui-hide" id="table" lay-filter="data"></table>
 
+                        <script type="text/html" id="titleTpl">
+                            {{ d.url }}
+                        </script>
+
                         <script type="text/html" id="toolbar">
                             <div class="layui-table-tool-temp">
                                 <div class="layui-inline" lay-event="add">
@@ -61,16 +65,46 @@
 <script>
     let dataOption = {};
     dataOption.cols = [{
-        "field": "name",
-        "title": "角色名称",
+        "field": "",
+        "title": "层级",
     }, {
-        "field": "description",
-        "title": "角色描述",
+        "field": "name",
+        "title": "资源名称",
+    }, {
+        "field": "id",
+        "title": "资源ID",
+    }, {
+        "field": "type",
+        "title": "资源类型",
+    }, {
+        "field": "url",
+        "title": "资源地址",
+    }, {
+        "field": "parentId",
+        "title": "父级资源",
+    }, {
+        "field": "icon",
+        "title": "资源图标",
+    }, {
+        "field": "sort",
+        "title": "排序",
+    }, {
+        "field": "external",
+        "title": "外部资源",
     }, {
         "field": "available",
-        "title": "是否可用",
-        "type": "check"
+        "title": "可用",
     }];
+
+    dataOption.parseData = function (res) {
+        return {
+            "code": 0, //解析接口状态
+            "msg": '', //解析提示文本
+            "count": res.total, //解析数据长度
+            "data": res.records //解析数据列表
+        }
+    };
+
     blogTable.init(dataOption);
 </script>
 </body>

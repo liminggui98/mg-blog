@@ -1,0 +1,25 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /config-center
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://git.huawei.com/l00480260/config-repo.git
+          search-paths: config-repo/
+          username: l00480260
+          password: 7Hv#7612
+          skip-ssl-validation: true
+  application:
+    name: config-center
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka,http://127.0.0.1:8762/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ['beans','info','health','env','refresh','mappings']
