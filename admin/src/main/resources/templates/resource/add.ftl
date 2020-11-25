@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>添加资源链接</title>
@@ -10,30 +9,75 @@
     <link href="/assets/plugins/layui/css/layui.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
 <form class="layui-form" action="" method="post">
     <div class="layui-form-item" style="width: 95%;">
-        <label class="layui-form-label">角色名称 *</label>
+        <label class="layui-form-label">资源名称 *</label>
         <div class="layui-input-block">
-            <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入角色名称"
+            <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入资源名称"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item" style="width: 95%;">
-        <label class="layui-form-label">角色描述 *</label>
+        <label class="layui-form-label">资源类型 *</label>
         <div class="layui-input-block">
-            <input type="text" name="description" lay-verify="title" autocomplete="off" placeholder="请输入角色描述"
+            <select name="type" lay-verify="required">
+                <option value="">请选择</option>
+                <option value="menu">菜单</option>
+                <option value="button">按钮</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item" style="width: 95%;">
+        <label class="layui-form-label">父级类型 *</label>
+        <div class="layui-input-block">
+            <select name="parentId" lay-verify="required">
+                <option value="">请选择</option>
+                <#list menus as menu>
+                    <option value="#{menu.id}">#{menu.name}</option>
+                </#list>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item" style="width: 95%;">
+        <label class="layui-form-label">资源链接</label>
+        <div class="layui-input-block">
+            <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="请输入资源链接"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="width: 95%;">
+        <label class="layui-form-label">资源权限</label>
+        <div class="layui-input-block">
+            <input type="text" name="permission" lay-verify="title" autocomplete="off" placeholder="请输入资源权限"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="width: 95%;">
+        <label class="layui-form-label">资源排序</label>
+        <div class="layui-input-block">
+            <input type="text" name="sort" autocomplete="off" placeholder="请输入资源排序"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="width: 95%;">
+        <label class="layui-form-label">资源图标</label>
+        <div class="layui-input-block">
+            <input type="text" name="icon" autocomplete="off" placeholder="请输入资源图标"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item" style="width: 95%;">
         <label class="layui-form-label">是否可用 *</label>
         <div class="layui-input-block">
-            <select name="available" lay-verify="required">
-                <option value="">请选择</option>
-                <option value="0">不可用</option>
-                <option value="1">可用</option>
-            </select>
+            <input type="radio" name="available" value="是" title="男" checked="">
+            <input type="radio" name="available" value="否" title="女">
+        </div>
+    </div>
+    <div class="layui-form-item" style="width: 95%;">
+        <label class="layui-form-label">外部链接 *</label>
+        <div class="layui-input-block">
+            <input type="radio" name="external" value="是" title="男" checked="">
+            <input type="radio" name="external" value="否" title="女">
         </div>
     </div>
     <div class="layui-form-item" style="width: 95%;display: none">
@@ -61,7 +105,7 @@
         });
 
         //监听提交
-        form.on('submit(add)', function(data){
+        form.on('submit(add)', function (data) {
             tableIns.reload(option);
         });
     });
