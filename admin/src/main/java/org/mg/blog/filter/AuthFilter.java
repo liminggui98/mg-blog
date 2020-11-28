@@ -65,7 +65,6 @@ public class AuthFilter implements Filter {
             log.info("user info is null");
         }
         request.setAttribute("user", user);
-
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }

@@ -20,15 +20,10 @@ import org.mg.blog.resp.UpdateByIdResp;
 import org.mg.blog.system.dto.Field;
 import org.mg.blog.utils.FieldUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,15 +84,17 @@ public abstract class BaseController<T extends BaseService<E>, E extends DataBas
      * @param ids id 集
      * @return 删除结果
      */
+    @ResponseBody
     @DeleteMapping("/batchDel")
-    public Result<DeleteByIdResp> batchDel(@RequestBody List<String> ids) {
-        return service.batchDel(ids);
+    public Result<DeleteByIdResp> batchDel(@RequestParam String ids) {
+        List<String> idList = Arrays.asList(ids.split(","));
+        return service.batchDel(idList);
     }
 
     /**
      * 修改数据实体
      *
-     * @param id 数据实体 id
+     * @param id  数据实体 id
      * @param obj 数据实体
      * @return 修改结果
      */

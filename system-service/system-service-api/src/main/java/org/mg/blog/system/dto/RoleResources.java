@@ -9,9 +9,9 @@ import org.mg.blog.dto.DataBaseModel;
  * 角色资源
  */
 @Data
-@TableName("tbl_role_resources")
+@TableName("tbl_role_resource")
 @EqualsAndHashCode(callSuper = false)
 public class RoleResources extends DataBaseModel {
     private Long roleId;
-    private Long resourcesId;
+    private Long resourceId;
 }

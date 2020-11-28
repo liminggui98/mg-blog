@@ -30,15 +30,12 @@ public class ConfigServiceImpl extends BaseServiceImpl<Config> implements Config
     private ConfigMapper configMapper;
 
     @Override
-    @Cacheable(cacheNames = "configAll")
     public Map<String, Object> queryConfigs() {
         List<Config> configList = configMapper.selectAll();
         if (CollectionUtils.isEmpty(configList)) {
             return null;
         }
-
         String updateTimeKey = ConfigKeyEnum.UPDATE_TIME.getKey();
-
         Map<String, Object> res = new HashMap<>();
         res.put(updateTimeKey, DateUtil.parse("2019-01-01 00:00:00", DateConstants.YYYY_MM_DD_HH_MM_SS_EN));
         configList.forEach((sysConfig) -> {
@@ -47,14 +44,6 @@ public class ConfigServiceImpl extends BaseServiceImpl<Config> implements Config
                 res.put(updateTimeKey, sysConfig.getUpdateTime());
             }
         });
-        String storageType = (String) res.get(ConfigKeyEnum.STORAGE_TYPE.getKey());
-        if ("local".equalsIgnoreCase(storageType)) {
-            res.put("fileStoragePath", res.get(ConfigKeyEnum.LOCAL_FILE_URL.getKey()));
-        } else if ("qiniu".equalsIgnoreCase(storageType)) {
-            res.put("fileStoragePath", res.get(ConfigKeyEnum.QINIU_BASE_PATH.getKey()));
-        } else if ("aliyun".equalsIgnoreCase(storageType)) {
-            res.put("fileStoragePath", res.get(ConfigKeyEnum.ALIYUN_FILE_URL.getKey()));
-        }
         return res;
     }
 }

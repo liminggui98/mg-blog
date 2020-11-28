@@ -65,14 +65,8 @@
 <script>
     let dataOption = {};
     dataOption.cols = [{
-        "field": "",
-        "title": "层级",
-    }, {
         "field": "name",
         "title": "资源名称",
-    }, {
-        "field": "id",
-        "title": "资源ID",
     }, {
         "field": "type",
         "title": "资源类型",

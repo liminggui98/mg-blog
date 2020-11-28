@@ -32,7 +32,6 @@ function initTable(dataOption) {
             cols: [cols],
             parseData: dataOption.parseData,
         }
-
         let tableIns = table.render(option);
 
         table.exportFile = function (e, t, i) {
@@ -83,7 +82,7 @@ function initTable(dataOption) {
         }
 
         function search() {
-            layer.msg('search')
+            layer.msg('search');
         }
 
         function add() {
@@ -94,14 +93,33 @@ function initTable(dataOption) {
                 btn: ['确认', '取消'],
                 content: [window.location.href + '/add'],
                 yes: function (index, layerNo) {
-                    let submitId = 'LAY-add-submit';
-                    let submit = layerNo.find('iframe').contents().find('#' + submitId);
-                    layer.close(index);
-                    submit.trigger('click');
+                    let addDataFormId = 'addDataFormId';
+                    let addDataForm = layerNo.find('iframe').contents().find('#' + addDataFormId);
+                    $.ajax({
+                        url: window.location.href + "/add",
+                        method: 'post',
+                        dataType: 'json',
+                        data: decodeURIComponent(addDataForm.serialize()),
+                        success: function (res) {
+                            layer.close(index);
+                            layer.msg('添加成功', {
+                                icon: 1,
+                            }, function () {
+                                tableIns.reload(option);
+                            });
+                        },
+                        error: function (res) {
+                            layer.close(index);
+                            layer.msg('添加失败', {
+                                icon: 2,
+                            }, function () {
+                                tableIns.reload(option);
+                            });
+                        }
+                    })
                 },
                 cancel: function (index, layerNo) {
                     layer.close(index);
-                    console.log('cancel')
                 }
             });
         }
@@ -156,13 +174,14 @@ function initTable(dataOption) {
             } else {
                 let ids = [];
                 for (let i in dataArray) {
-                    ids.push(dataArray[i].id)
+                    ids.push(dataArray[i].id);
                 }
+                let data = {}
+                data.ids = ids.join(",");
                 $.ajax({
-                    url: window.location.href + "/batchDel",
-                    data: {
-                        'ids': $.makeArray(ids)
-                    },
+                    url: window.location.href + "/batchDel?ids=" + ids.join(","),
+                    data: data,
+                    dataType: 'json',
                     method: 'delete',
                     success: function (res) {
                         layer.msg('删除成功', {

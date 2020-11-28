@@ -15,7 +15,7 @@ import java.util.List;
  * 系统资源
  */
 @FeignClient(name = "system-service", contextId = "resourceApi", path = "/resource", fallback = BaseApiFallBack.class)
-public interface ResourcesApi extends BaseApi<Resource> {
+public interface ResourceApi extends BaseApi<Resource> {
     /**
      * 通过用户 id 查询用户资源
      *

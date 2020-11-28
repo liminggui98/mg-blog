@@ -25,10 +25,14 @@ import java.util.List;
 @Controller
 @RequestMapping(value = RESOURCE_URL)
 public class ResourceController extends BaseController<ResourceService, Resource> {
+
     @Override
     @GetMapping("/add")
     public ModelAndView toAdd() {
-        return createView("resource/add");
+        ModelAndView modelAndView = createView("resource/add");
+        // 查询用户拥有的菜单集，且菜单按层次
+        modelAndView.addObject("resources", this.service.queryRoleResource("1"));
+        return modelAndView;
     }
 
     @Override
@@ -49,7 +53,7 @@ public class ResourceController extends BaseController<ResourceService, Resource
     @ResponseBody
     @PostMapping("/list")
     public Page<Resource> queryList(Page<Resource> page) {
-        List<Resource> resourceList = service.queryResource();
+        List<Resource> resourceList = service.query(page).getRecords();
 
         Page<Resource> resultPage = new Page<>();
         resultPage.setRecords(resourceList);

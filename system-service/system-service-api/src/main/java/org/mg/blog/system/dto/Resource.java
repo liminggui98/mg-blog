@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.mg.blog.dto.DataBaseModel;
 
+import java.beans.Transient;
 import java.util.List;
 
 /**

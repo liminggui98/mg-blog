@@ -9,7 +9,7 @@
     <link href="/assets/plugins/layui/css/layui.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form class="layui-form" action="" method="post">
+<form id="addDataFormId" class="layui-form" method="post">
     <div class="layui-form-item" style="width: 95%;">
         <label class="layui-form-label">资源名称 *</label>
         <div class="layui-input-block">
@@ -32,8 +32,8 @@
         <div class="layui-input-block">
             <select name="parentId" lay-verify="required">
                 <option value="">请选择</option>
-                <#list menus as menu>
-                    <option value="#{menu.id}">#{menu.name}</option>
+                <#list resources as resource>
+                    <option value="#{resource.id}">#{resource.name}</option>
                 </#list>
             </select>
         </div>
@@ -69,20 +69,15 @@
     <div class="layui-form-item" style="width: 95%;">
         <label class="layui-form-label">是否可用 *</label>
         <div class="layui-input-block">
-            <input type="radio" name="available" value="是" title="男" checked="">
-            <input type="radio" name="available" value="否" title="女">
+            <input type="radio" name="available" value="1" title="是" checked="">
+            <input type="radio" name="available" value="0" title="否">
         </div>
     </div>
     <div class="layui-form-item" style="width: 95%;">
         <label class="layui-form-label">外部链接 *</label>
         <div class="layui-input-block">
-            <input type="radio" name="external" value="是" title="男" checked="">
-            <input type="radio" name="external" value="否" title="女">
-        </div>
-    </div>
-    <div class="layui-form-item" style="width: 95%;display: none">
-        <div class="layui-input-block">
-            <button type="submit" class="layui-btn" lay-submit="" lay-filter="add" id="LAY-add-submit">立即提交</button>
+            <input type="radio" name="external" value="1" title="是" checked="">
+            <input type="radio" name="external" value="0" title="否">
         </div>
     </div>
 </form>
@@ -102,11 +97,6 @@
             ],
             content: function (value) {
             }
-        });
-
-        //监听提交
-        form.on('submit(add)', function (data) {
-            tableIns.reload(option);
         });
     });
 </script>

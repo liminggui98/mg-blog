@@ -54,7 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/assets/**", "/kaptcha", "/**")
+                .antMatchers("/assets/**/jquery/**/**", "/assets/**/three/**/**",
+                        "/assets/**/login/**/**", "/kaptcha")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

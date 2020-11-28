@@ -94,7 +94,8 @@ CREATE TABLE `tbl_notice`
 -- Table structure for tbl_resources
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_resource`;
-CREATE TABLE `tbl_resource`(
+CREATE TABLE `tbl_resource`
+(
     `id`          bigint(20) UNSIGNED                                     NOT NULL AUTO_INCREMENT,
     `name`        varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
     `type`        varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci  NULL DEFAULT NULL,
@@ -137,14 +138,14 @@ CREATE TABLE `tbl_role`
 -- ----------------------------
 -- Table structure for tbl_role_resources
 -- ----------------------------
-DROP TABLE IF EXISTS `tbl_role_resources`;
-CREATE TABLE `tbl_role_resources`
+DROP TABLE IF EXISTS `tbl_role_resource`;
+CREATE TABLE `tbl_role_resource`
 (
-    `id`           bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `role_id`      bigint(20) UNSIGNED NOT NULL,
-    `resources_id` bigint(20) UNSIGNED NOT NULL,
-    `create_time`  datetime(0)         NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
-    `update_time`  datetime(0)         NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+    `id`          bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `role_id`     bigint(20) UNSIGNED NOT NULL,
+    `resource_id` bigint(20) UNSIGNED NOT NULL,
+    `create_time` datetime(0)         NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
+    `update_time` datetime(0)         NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 0
@@ -176,12 +177,12 @@ CREATE TABLE `tbl_template`
 DROP TABLE IF EXISTS `tbl_update_record`;
 CREATE TABLE `tbl_update_record`
 (
-    `id`           bigint(20) UNSIGNED                                      NOT NULL AUTO_INCREMENT,
-    `version`      varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '更新版本',
-    `description`  varchar(2500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新记录备注',
+    `id`          bigint(20) UNSIGNED                                      NOT NULL AUTO_INCREMENT,
+    `version`     varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '更新版本',
+    `description` varchar(2500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新记录备注',
     `record_time` datetime(0)                                              NULL DEFAULT CURRENT_TIMESTAMP COMMENT '项目更新时间',
-    `create_time`  datetime(0)                                              NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
-    `update_time`  datetime(0)                                              NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+    `create_time` datetime(0)                                              NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
+    `update_time` datetime(0)                                              NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 0

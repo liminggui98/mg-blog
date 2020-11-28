@@ -34,7 +34,7 @@
         <include refid="relTableName"/>
         left join
         <include refid="resourceTableName"/>
-        on role_res.resources_id = res.id
+        on role_res.resource_id = res.id
         where 1=1
         <if test="roleId != null and roleId != ''">
             and role_res.role_id = #{roleId}

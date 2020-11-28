@@ -3,7 +3,7 @@ package org.mg.blog.index.controller;
 
 import org.mg.blog.index.constants.Url;
 import org.mg.blog.index.constants.View;
-import org.mg.blog.system.api.ResourcesApi;
+import org.mg.blog.system.api.ResourceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
 
     @Autowired
-    private ResourcesApi resourcesApi;
+    private ResourceApi resourcesApi;
 
     /**
      * 首页
