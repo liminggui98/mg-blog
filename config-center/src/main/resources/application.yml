@@ -9,6 +9,8 @@ spring:
         git:
           uri: https://github.com/liminggui98/mg-blog.git
           search-paths: config-repo/
+          username: 1406345964@qq.com
+          password: lmg6044164019
   application:
     name: config-center
 eureka:
