@@ -14,7 +14,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://47.96.173.42:8761/eureka,http://47.96.173.42:8762/eureka,http://47.96.173.42:8763/eureka
+      defaultZone: http://register-center-1.minggui98.vip:8761/eureka,http://register-center-2.minggui98.vip:8762/eureka,http://register-center-3.minggui98.vip:8763/eureka
 management:
   endpoints:
     web:
