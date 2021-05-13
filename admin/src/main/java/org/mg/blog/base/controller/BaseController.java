@@ -1,9 +1,9 @@
 
 package org.mg.blog.base.controller;
 
-import static org.mg.blog.base.constants.BaseContants.DATA_ADD_VIEW;
-import static org.mg.blog.base.constants.BaseContants.DATA_DETAIL_VIEW;
-import static org.mg.blog.base.constants.BaseContants.DATA_TABLE_VIEW;
+import static org.mg.blog.base.constants.BaseConstants.DATA_ADD_VIEW;
+import static org.mg.blog.base.constants.BaseConstants.DATA_DETAIL_VIEW;
+import static org.mg.blog.base.constants.BaseConstants.DATA_TABLE_VIEW;
 import static org.mg.blog.constants.CommonConst.COLS_FIELD;
 import static org.mg.blog.constants.CommonConst.TABLE_OPTION_FIELD;
 
@@ -27,8 +27,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.annotation.Resource;
 
 /**
  * 基础转发器

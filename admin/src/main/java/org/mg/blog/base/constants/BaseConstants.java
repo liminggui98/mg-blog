@@ -6,7 +6,7 @@ package org.mg.blog.base.constants;
  *
  * @since 2020-09-26
  */
-public class BaseContants {
+public class BaseConstants {
 
     /**
      * 数据列表视图名

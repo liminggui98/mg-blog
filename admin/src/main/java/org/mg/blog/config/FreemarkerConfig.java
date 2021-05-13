@@ -17,10 +17,10 @@ import javax.annotation.Resource;
 public class FreemarkerConfig {
 
     @Resource
-    private ResourceApi resourcsApi;
+    private ConfigApi configApi;
 
     @Resource
-    private ConfigApi configApi;
+    private ResourceApi resourceApi;
 
     @Resource
     private freemarker.template.Configuration configuration;
@@ -33,6 +33,6 @@ public class FreemarkerConfig {
     @PostConstruct
     public void init() throws TemplateModelException {
         configuration.setSharedVariable("config", configApi.queryConfigs().getResult());
-        configuration.setSharedVariable("menus", resourcsApi.queryRoleResource("1").getResult());
+        configuration.setSharedVariable("menus", resourceApi.queryRoleResource("1").getResult());
     }
 }

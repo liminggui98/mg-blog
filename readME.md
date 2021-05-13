@@ -1,5 +1,5 @@
 register-center:
-    8761, 8762
+    8761, 8762, 8763
 
 gateway
     443

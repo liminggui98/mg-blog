@@ -5,9 +5,9 @@ server:
   port: 8763
 eureka:
   instance:
-    hostname: localhost
+    hostname: register-center-3.minggui98.vip
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka,http://${eureka.instance.hostname}:8762/eureka
+      defaultZone: http://register-center-1.minggui98.vip:8761/eureka,http://register-center-2.minggui98.vip:8762/eureka
