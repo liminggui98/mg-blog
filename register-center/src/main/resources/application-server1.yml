@@ -6,7 +6,6 @@ server:
 eureka:
   instance:
     hostname: register-center-1.minggui98.vip
-    environment: server1
   client:
     register-with-eureka: true
     fetch-registry: true

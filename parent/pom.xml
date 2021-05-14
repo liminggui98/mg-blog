@@ -18,9 +18,9 @@
         <mybatis.version>2.1.2</mybatis.version>
         <maven.compile.source>1.8</maven.compile.source>
         <maven.compile.target>1.8</maven.compile.target>
-        <mybatis.plus.version>3.3.1</mybatis.plus.version>
-        <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
-        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+        <mybatis.plus.version>3.4.2</mybatis.plus.version>
+        <spring-cloud.version>2020.0.2</spring-cloud.version>
+        <spring-boot.version>2.4.5</spring-boot.version>
         <com.alibaba.fast.json.version>1.2.58</com.alibaba.fast.json.version>
     </properties>
 
